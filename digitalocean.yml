@@ -23,7 +23,7 @@
 
   - name: ensure droplet one exists
     digital_ocean: >
-      state=absent
+      state=present
       command=droplet
       name=droplet-one
       unique_name=yes
@@ -35,3 +35,21 @@
     register: droplet_one
 
   - debug: msg="IP is {{ droplet_one.droplet.ip_address }}"
+
+  - name: add host
+    add_host:
+      name: "{{ droplet_one.droplet.ip_address }}"
+      groups: droplets
+      ansible_ssh_user: root
+
+- hosts: droplets
+
+  tasks:
+
+  - name: install apache2
+    apt: name=apache2 update_cache=yes state=latest
+
+  handlers:
+    - name: restart apache2
+      service: name=apache2 state=restarted
+

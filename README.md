@@ -5,6 +5,9 @@ https://www.digitalocean.com/community/tutorials/how-to-use-the-digitalocean-api
 * Activate virtualenv with Ansible installed!
 
 Get a list of all available images in the DigitalOcean v2 API:
+```
+curl -X GET --silent "https://api.digitalocean.com/v2/images?per_page=999" -H "Authorization: Bearer $DO_API_TOKEN"
+```
 
-`curl -X GET --silent "https://api.digitalocean.com/v2/images?per_page=999" -H "Authorization: Bearer $DO_API_TOKEN"` 
+https://www.digitalocean.com/community/tutorials/how-to-configure-apache-using-ansible-on-ubuntu-14-04
 
